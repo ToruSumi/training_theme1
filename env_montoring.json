@@ -1,0 +1,578 @@
+[
+    {
+        "id": "915506a5259846c2",
+        "type": "tab",
+        "label": "[work1]Monitoring",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "046a599fefd988dc",
+        "type": "inject",
+        "z": "915506a5259846c2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "f04924eaf3cc396b"
+            ]
+        ]
+    },
+    {
+        "id": "f04924eaf3cc396b",
+        "type": "SHT3x",
+        "z": "915506a5259846c2",
+        "name": "",
+        "shtaddress": "0x44",
+        "x": 370,
+        "y": 100,
+        "wires": [
+            [
+                "0d9b6aeb14dc9596",
+                "0a6a412c3b4e1285",
+                "7c646369313d9c8b"
+            ]
+        ]
+    },
+    {
+        "id": "0d9b6aeb14dc9596",
+        "type": "change",
+        "z": "915506a5259846c2",
+        "name": "get temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperature",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "7dbe3ad79bce5d24"
+            ]
+        ]
+    },
+    {
+        "id": "7dbe3ad79bce5d24",
+        "type": "calculator",
+        "z": "915506a5259846c2",
+        "name": "",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "rdec",
+        "constant": "2",
+        "round": false,
+        "decimals": "0",
+        "x": 460,
+        "y": 200,
+        "wires": [
+            [
+                "068f36df647ada45",
+                "8be1cff83ba03a39"
+            ]
+        ]
+    },
+    {
+        "id": "0a6a412c3b4e1285",
+        "type": "change",
+        "z": "915506a5259846c2",
+        "name": "get humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 210,
+        "y": 380,
+        "wires": [
+            [
+                "0f7ca6e2444483eb"
+            ]
+        ]
+    },
+    {
+        "id": "0f7ca6e2444483eb",
+        "type": "calculator",
+        "z": "915506a5259846c2",
+        "name": "",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "rdec",
+        "constant": "2",
+        "round": false,
+        "decimals": "0",
+        "x": 460,
+        "y": 380,
+        "wires": [
+            [
+                "913f5a94f0d8527e",
+                "fea76f4a29939dea"
+            ]
+        ]
+    },
+    {
+        "id": "068f36df647ada45",
+        "type": "ui_chart",
+        "z": "915506a5259846c2",
+        "name": "",
+        "group": "377dadf7fdac617f",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Temp history",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 710,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "913f5a94f0d8527e",
+        "type": "ui_chart",
+        "z": "915506a5259846c2",
+        "name": "",
+        "group": "0fa2f760beeec2eb",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Humid history",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 720,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8be1cff83ba03a39",
+        "type": "ui_artlessgauge",
+        "z": "915506a5259846c2",
+        "group": "377dadf7fdac617f",
+        "order": 2,
+        "width": "5",
+        "height": "5",
+        "name": "temp gauge",
+        "icon": "fa-thermometer-full",
+        "label": "Temperature",
+        "unit": "℃",
+        "layout": "radial",
+        "decimals": "2",
+        "differential": false,
+        "minmax": false,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 10,
+                "col": "#004cff",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 15,
+                "col": "#00a0ff",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 20,
+                "col": "#00ff3c",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 25,
+                "col": "#ff8000",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 30,
+                "col": "#ff3333",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 40,
+                "col": "#ff3333",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": 3,
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 710,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "fea76f4a29939dea",
+        "type": "ui_artlessgauge",
+        "z": "915506a5259846c2",
+        "group": "0fa2f760beeec2eb",
+        "order": 1,
+        "width": "5",
+        "height": "5",
+        "name": "humidity gauge",
+        "icon": "fa-tint",
+        "label": "Humidity",
+        "unit": "%",
+        "layout": "radial",
+        "decimals": "2",
+        "differential": false,
+        "minmax": false,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 30,
+                "col": "#f5b356",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 50,
+                "col": "#1eff00",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 70,
+                "col": "#ff0000",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 80,
+                "col": "#ff0000",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": 3,
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 720,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "7c646369313d9c8b",
+        "type": "function",
+        "z": "915506a5259846c2",
+        "name": "calc discomfort",
+        "func": "var temp = msg.payload.temperature;\nvar humid = msg.payload.humidity;\n\nmsg.payload.discomfort = (0.81 * temp) + humid * 0.01 * (0.99 * temp - 14.3) + 46.3;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 540,
+        "wires": [
+            [
+                "e0b4ec85c0083cbe",
+                "a7cb9a324dbaed39"
+            ]
+        ]
+    },
+    {
+        "id": "e0b4ec85c0083cbe",
+        "type": "ui_artlessgauge",
+        "z": "915506a5259846c2",
+        "group": "1d862fa550b0cbc9",
+        "order": 1,
+        "width": "5",
+        "height": "5",
+        "name": "Discomfort gauge",
+        "icon": "fa-thumbs-o-down",
+        "label": "Discomfort",
+        "unit": "%",
+        "layout": "radial",
+        "decimals": "2",
+        "differential": false,
+        "minmax": false,
+        "colorTrack": "#555555",
+        "style": "",
+        "colorFromTheme": true,
+        "property": "payload.discomfort",
+        "secondary": "secondary",
+        "inline": false,
+        "animate": true,
+        "sectors": [
+            {
+                "val": 0,
+                "col": "#0d40d9",
+                "t": "min",
+                "dot": 0
+            },
+            {
+                "val": 60,
+                "col": "#1eff00",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 75,
+                "col": "#ff0000",
+                "t": "sec",
+                "dot": 0
+            },
+            {
+                "val": 100,
+                "col": "#ff0000",
+                "t": "max",
+                "dot": 0
+            }
+        ],
+        "lineWidth": 3,
+        "bgcolorFromTheme": true,
+        "diffCenter": "",
+        "x": 730,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "a7cb9a324dbaed39",
+        "type": "switch",
+        "z": "915506a5259846c2",
+        "name": "check environment",
+        "property": "payload.discomfort",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "75",
+                "vt": "num"
+            },
+            {
+                "t": "lt",
+                "v": "60",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 470,
+        "y": 620,
+        "wires": [
+            [
+                "0f07dec9ef7b06ba"
+            ],
+            [
+                "44c42070a1138924"
+            ]
+        ],
+        "outputLabels": [
+            "hot",
+            "cold"
+        ]
+    },
+    {
+        "id": "e1de0c58b496dfdc",
+        "type": "line-notify",
+        "z": "915506a5259846c2",
+        "name": "notify",
+        "message": "",
+        "contentType": "message",
+        "imageThumbnail": "",
+        "imageUrl": "",
+        "sticker": "default",
+        "stickerPackageId": "1",
+        "stickerId": "1",
+        "silent": false,
+        "creds": "e79f451de43f0fdf",
+        "x": 910,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0f07dec9ef7b06ba",
+        "type": "template",
+        "z": "915506a5259846c2",
+        "name": "make text",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "部屋が暑くなっています\n\n温度: {{payload.temperature}}\n湿度: {{payload.humidity}}\n不快指数: {{payload.discomfort}}",
+        "output": "str",
+        "x": 700,
+        "y": 600,
+        "wires": [
+            [
+                "e1de0c58b496dfdc"
+            ]
+        ]
+    },
+    {
+        "id": "44c42070a1138924",
+        "type": "template",
+        "z": "915506a5259846c2",
+        "name": "make text",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "部屋が寒くなっています\n\n温度: {{payload.temperature}}\n湿度: {{payload.humidity}}\n不快指数: {{payload.discomfort}}",
+        "output": "str",
+        "x": 700,
+        "y": 640,
+        "wires": [
+            [
+                "e1de0c58b496dfdc"
+            ]
+        ]
+    },
+    {
+        "id": "377dadf7fdac617f",
+        "type": "ui_group",
+        "name": "温度",
+        "tab": "d930b40a1bec4f15",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0fa2f760beeec2eb",
+        "type": "ui_group",
+        "name": "湿度",
+        "tab": "d930b40a1bec4f15",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1d862fa550b0cbc9",
+        "type": "ui_group",
+        "name": "不快指数",
+        "tab": "d930b40a1bec4f15",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e79f451de43f0fdf",
+        "type": "linetoken",
+        "name": "personal"
+    },
+    {
+        "id": "d930b40a1bec4f15",
+        "type": "ui_tab",
+        "name": "ホーム",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
